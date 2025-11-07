@@ -1,0 +1,40 @@
+{
+  "name": "basepulse-ido",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BasePulse IDO Platform - PULSE Token Sale & Vesting",
+  "workspaces": [
+    "contracts",
+    "frontend",
+    "backend",
+    "subgraph",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present && rm -rf node_modules",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "compile:contracts": "npm run compile --workspace=contracts",
+    "test:contracts": "npm run test --workspace=contracts",
+    "deploy:sepolia": "npm run deploy:sepolia --workspace=contracts",
+    "deploy:mainnet": "npm run deploy:mainnet --workspace=contracts",
+    "graph:codegen": "npm run codegen --workspace=subgraph",
+    "graph:deploy": "npm run deploy --workspace=subgraph"
+  },
+  "keywords": [
+    "ido",
+    "token-sale",
+    "vesting",
+    "web3",
+    "base",
+    "pulse"
+  ],
+  "author": "BasePulse Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
