@@ -1,0 +1,17 @@
+{
+  "network": "baseSepolia",
+  "chainId": "84532",
+  "timestamp": "2025-11-07T00:00:00.000Z",
+  "deployer": "0x5F565baE36bd373797afc1682a627Cc05CC28600",
+  "contracts": {
+    "FactoryRegistry": {
+      "address": "0xF2E34D95412FDbf4606f5880bED7820d00c17D8B",
+      "factory": "0x27Cd6127E787dc96D7d76B9575f900173c2C864E"
+    },
+    "IDOFactory": {
+      "address": "0x27Cd6127E787dc96D7d76B9575f900173c2C864E",
+      "usdcToken": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+      "registry": "0xF2E34D95412FDbf4606f5880bED7820d00c17D8B"
+    }
+  }
+}

@@ -13,7 +13,7 @@ const config: HardhatUserConfig = {
     settings: {
       optimizer: {
         enabled: true,
-        runs: 200,
+        runs: 1, // Low runs for smaller contract size
       },
       viaIR: true,
     },
@@ -36,10 +36,7 @@ const config: HardhatUserConfig = {
     },
   },
   etherscan: {
-    apiKey: {
-      baseSepolia: process.env.BASESCAN_API_KEY || "",
-      base: process.env.BASESCAN_API_KEY || "",
-    },
+    apiKey: process.env.BASESCAN_API_KEY || "",
     customChains: [
       {
         network: "baseSepolia",
