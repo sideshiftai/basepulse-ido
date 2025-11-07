@@ -5,10 +5,10 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ basepulse-ido",
-    "create-local": "graph create --node http://localhost:8020/ basepulse-ido",
-    "remove-local": "graph remove --node http://localhost:8020/ basepulse-ido",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 basepulse-ido"
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ bpulseido",
+    "create-local": "graph create --node http://localhost:8020/ bpulseido",
+    "remove-local": "graph remove --node http://localhost:8020/ bpulseido",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 bpulseido"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.56.0",

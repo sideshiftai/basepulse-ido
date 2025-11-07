@@ -1,7 +1,7 @@
 """
 IDO Factory - represents the factory contract singleton
 """
-type Factory @entity {
+type Factory @entity(immutable: false) {
   id: ID! # Factory contract address
   saleCount: BigInt!
   platformFeeBps: BigInt!
@@ -18,7 +18,7 @@ type Factory @entity {
 """
 Sale - represents an individual IDO sale
 """
-type Sale @entity {
+type Sale @entity(immutable: false) {
   id: ID! # Sale contract address
   saleId: BigInt!
   factory: Factory!
@@ -65,7 +65,7 @@ type Sale @entity {
 """
 Token - ERC20 token information
 """
-type Token @entity {
+type Token @entity(immutable: false) {
   id: ID! # Token address
   address: Bytes!
   symbol: String
@@ -79,7 +79,7 @@ type Token @entity {
 """
 User - participant in IDO sales
 """
-type User @entity {
+type User @entity(immutable: false) {
   id: ID! # User address
   address: Bytes!
   totalContributionsETH: BigInt!
@@ -98,7 +98,7 @@ type User @entity {
 """
 Tier - individual tier configuration within a sale
 """
-type Tier @entity {
+type Tier @entity(immutable: false) {
   id: ID! # {saleAddress}-{tierId}
   sale: Sale!
   tierId: BigInt!
@@ -121,7 +121,7 @@ type Tier @entity {
 """
 Contribution - individual user contribution to a tier
 """
-type Contribution @entity {
+type Contribution @entity(immutable: true) {
   id: ID! # {saleAddress}-{userAddress}-{tierId}-{txHash}
   sale: Sale!
   tier: Tier!
@@ -141,7 +141,7 @@ type Contribution @entity {
 """
 Claim - TGE or vested token claim
 """
-type Claim @entity {
+type Claim @entity(immutable: true) {
   id: ID! # {saleAddress}-{userAddress}-{type}-{txHash}
   sale: Sale!
   user: User!
@@ -163,7 +163,7 @@ enum ClaimType {
 """
 VestingSchedule - vesting schedule for a user in a sale
 """
-type VestingSchedule @entity {
+type VestingSchedule @entity(immutable: false) {
   id: ID! # {vestingManagerAddress}-{beneficiary}
   sale: Sale!
   beneficiary: User!
@@ -188,7 +188,7 @@ type VestingSchedule @entity {
 """
 VestingClaim - individual claim from a vesting schedule
 """
-type VestingClaim @entity {
+type VestingClaim @entity(immutable: true) {
   id: ID! # {vestingManagerAddress}-{beneficiary}-{txHash}
   schedule: VestingSchedule!
   amount: BigInt!
@@ -202,7 +202,7 @@ type VestingClaim @entity {
 """
 DailySaleStats - daily aggregated statistics for a sale
 """
-type DailySaleStats @entity {
+type DailySaleStats @entity(immutable: false) {
   id: ID! # {saleAddress}-{day}
   sale: Sale!
   day: BigInt!
@@ -217,7 +217,7 @@ type DailySaleStats @entity {
 """
 GlobalStats - global platform statistics
 """
-type GlobalStats @entity {
+type GlobalStats @entity(immutable: false) {
   id: ID! # "global"
 
   totalSales: BigInt!

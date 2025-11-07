@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class IDOContractSet extends ethereum.Event {
@@ -142,7 +142,7 @@ export class VestingManagerV2__getVestingInfoResult {
     value2: BigInt,
     value3: BigInt,
     value4: BigInt,
-    value5: boolean
+    value5: boolean,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -228,7 +228,7 @@ export class VestingManagerV2__vestingSchedulesResult {
     value2: BigInt,
     value3: BigInt,
     value4: BigInt,
-    value5: boolean
+    value5: boolean,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -283,7 +283,7 @@ export class VestingManagerV2 extends ethereum.SmartContract {
     let result = super.call(
       "getClaimableAmount",
       "getClaimableAmount(address):(uint256)",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
 
     return result[0].toBigInt();
@@ -293,7 +293,7 @@ export class VestingManagerV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "getClaimableAmount",
       "getClaimableAmount(address):(uint256)",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -306,7 +306,7 @@ export class VestingManagerV2 extends ethereum.SmartContract {
     let result = super.call(
       "getNextUnlockTime",
       "getNextUnlockTime(address):(uint256)",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
 
     return result[0].toBigInt();
@@ -316,7 +316,7 @@ export class VestingManagerV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "getNextUnlockTime",
       "getNextUnlockTime(address):(uint256)",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -329,19 +329,19 @@ export class VestingManagerV2 extends ethereum.SmartContract {
     let result = super.call(
       "getTimeUntilFullyVested",
       "getTimeUntilFullyVested(address):(uint256)",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
 
     return result[0].toBigInt();
   }
 
   try_getTimeUntilFullyVested(
-    _beneficiary: Address
+    _beneficiary: Address,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getTimeUntilFullyVested",
       "getTimeUntilFullyVested(address):(uint256)",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -354,7 +354,7 @@ export class VestingManagerV2 extends ethereum.SmartContract {
     let result = super.call(
       "getVestedAmount",
       "getVestedAmount(address):(uint256)",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
 
     return result[0].toBigInt();
@@ -364,7 +364,7 @@ export class VestingManagerV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "getVestedAmount",
       "getVestedAmount(address):(uint256)",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -374,12 +374,12 @@ export class VestingManagerV2 extends ethereum.SmartContract {
   }
 
   getVestingInfo(
-    _beneficiary: Address
+    _beneficiary: Address,
   ): VestingManagerV2__getVestingInfoResult {
     let result = super.call(
       "getVestingInfo",
       "getVestingInfo(address):(uint256,uint256,uint256,uint256,uint256,bool)",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
 
     return new VestingManagerV2__getVestingInfoResult(
@@ -388,17 +388,17 @@ export class VestingManagerV2 extends ethereum.SmartContract {
       result[2].toBigInt(),
       result[3].toBigInt(),
       result[4].toBigInt(),
-      result[5].toBoolean()
+      result[5].toBoolean(),
     );
   }
 
   try_getVestingInfo(
-    _beneficiary: Address
+    _beneficiary: Address,
   ): ethereum.CallResult<VestingManagerV2__getVestingInfoResult> {
     let result = super.tryCall(
       "getVestingInfo",
       "getVestingInfo(address):(uint256,uint256,uint256,uint256,uint256,bool)",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -411,34 +411,32 @@ export class VestingManagerV2 extends ethereum.SmartContract {
         value[2].toBigInt(),
         value[3].toBigInt(),
         value[4].toBigInt(),
-        value[5].toBoolean()
-      )
+        value[5].toBoolean(),
+      ),
     );
   }
 
   getVestingSchedule(
-    _beneficiary: Address
+    _beneficiary: Address,
   ): VestingManagerV2__getVestingScheduleResultValue0Struct {
     let result = super.call(
       "getVestingSchedule",
       "getVestingSchedule(address):((uint256,uint256,uint256,uint256,uint256,bool))",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
 
     return changetype<VestingManagerV2__getVestingScheduleResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getVestingSchedule(
-    _beneficiary: Address
-  ): ethereum.CallResult<
-    VestingManagerV2__getVestingScheduleResultValue0Struct
-  > {
+    _beneficiary: Address,
+  ): ethereum.CallResult<VestingManagerV2__getVestingScheduleResultValue0Struct> {
     let result = super.tryCall(
       "getVestingSchedule",
       "getVestingSchedule(address):((uint256,uint256,uint256,uint256,uint256,bool))",
-      [ethereum.Value.fromAddress(_beneficiary)]
+      [ethereum.Value.fromAddress(_beneficiary)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -446,8 +444,8 @@ export class VestingManagerV2 extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<VestingManagerV2__getVestingScheduleResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -530,7 +528,7 @@ export class VestingManagerV2 extends ethereum.SmartContract {
     let result = super.call(
       "vestingSchedules",
       "vestingSchedules(address):(uint256,uint256,uint256,uint256,uint256,bool)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return new VestingManagerV2__vestingSchedulesResult(
@@ -539,17 +537,17 @@ export class VestingManagerV2 extends ethereum.SmartContract {
       result[2].toBigInt(),
       result[3].toBigInt(),
       result[4].toBigInt(),
-      result[5].toBoolean()
+      result[5].toBoolean(),
     );
   }
 
   try_vestingSchedules(
-    param0: Address
+    param0: Address,
   ): ethereum.CallResult<VestingManagerV2__vestingSchedulesResult> {
     let result = super.tryCall(
       "vestingSchedules",
       "vestingSchedules(address):(uint256,uint256,uint256,uint256,uint256,bool)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -562,8 +560,8 @@ export class VestingManagerV2 extends ethereum.SmartContract {
         value[2].toBigInt(),
         value[3].toBigInt(),
         value[4].toBigInt(),
-        value[5].toBoolean()
-      )
+        value[5].toBoolean(),
+      ),
     );
   }
 }
