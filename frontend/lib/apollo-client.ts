@@ -1,7 +1,12 @@
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 
 // Subgraph endpoint from The Graph Studio
-const SUBGRAPH_URL = 'https://api.studio.thegraph.com/query/122132/bpulseido/v0.0.1';
+// Configure via NEXT_PUBLIC_SUBGRAPH_URL environment variable
+const SUBGRAPH_URL = process.env.NEXT_PUBLIC_SUBGRAPH_URL;
+
+if (!SUBGRAPH_URL) {
+  console.error('NEXT_PUBLIC_SUBGRAPH_URL is not set. Please add it to your .env.local file.');
+}
 
 /**
  * Apollo Client for BasePulse IDO Subgraph
