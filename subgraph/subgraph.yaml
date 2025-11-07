@@ -1,0 +1,126 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  # IDO Factory
+  - kind: ethereum
+    name: IDOFactory
+    network: base-sepolia
+    source:
+      address: "0x27Cd6127E787dc96D7d76B9575f900173c2C864E"
+      abi: IDOFactory
+      startBlock: 18000000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Factory
+        - Sale
+        - Token
+        - User
+      abis:
+        - name: IDOFactory
+          file: ./abis/IDOFactory.json
+        - name: IDOSaleV2
+          file: ./abis/IDOSaleV2.json
+      eventHandlers:
+        - event: SaleCreated(indexed uint256,indexed address,address,address,address,indexed address)
+          handler: handleSaleCreated
+        - event: PlatformFeeUpdated(uint256,uint256)
+          handler: handlePlatformFeeUpdated
+        - event: FeeCollectorUpdated(address,address)
+          handler: handleFeeCollectorUpdated
+      file: ./src/mappings/factory.ts
+
+  # Factory Registry
+  - kind: ethereum
+    name: FactoryRegistry
+    network: base-sepolia
+    source:
+      address: "0xF2E34D95412FDbf4606f5880bED7820d00c17D8B"
+      abi: FactoryRegistry
+      startBlock: 18000000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Sale
+      abis:
+        - name: FactoryRegistry
+          file: ./abis/FactoryRegistry.json
+      eventHandlers:
+        - event: SaleRegistered(indexed uint256,indexed address,indexed address)
+          handler: handleSaleRegistered
+        - event: SaleDeactivated(indexed uint256)
+          handler: handleSaleDeactivated
+      file: ./src/mappings/registry.ts
+
+# Dynamic data sources will be created for each sale
+templates:
+  # IDO Sale Template
+  - kind: ethereum
+    name: IDOSaleV2
+    network: base-sepolia
+    source:
+      abi: IDOSaleV2
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Sale
+        - Tier
+        - Contribution
+        - Claim
+        - User
+        - DailySaleStats
+        - GlobalStats
+      abis:
+        - name: IDOSaleV2
+          file: ./abis/IDOSaleV2.json
+      eventHandlers:
+        - event: SaleConfigured(uint256,uint256,uint256,uint256,uint256)
+          handler: handleSaleConfigured
+        - event: TierConfigured(indexed uint8,uint256,uint256,uint256,uint256,uint256)
+          handler: handleTierConfigured
+        - event: TokensPurchased(indexed address,indexed uint8,uint256,uint256,uint256,indexed address)
+          handler: handleTokensPurchased
+        - event: TGEClaimed(indexed address,uint256)
+          handler: handleTGEClaimed
+        - event: SaleFinalized(uint256,uint256)
+          handler: handleSaleFinalized
+        - event: RefundClaimed(indexed address,uint256,uint256)
+          handler: handleRefundClaimed
+        - event: WhitelistUpdated(bytes32)
+          handler: handleWhitelistUpdated
+        - event: VestingContractSet(address)
+          handler: handleVestingContractSet
+      file: ./src/mappings/ido-sale.ts
+
+  # Vesting Manager Template
+  - kind: ethereum
+    name: VestingManagerV2
+    network: base-sepolia
+    source:
+      abi: VestingManagerV2
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - VestingSchedule
+        - VestingClaim
+        - User
+      abis:
+        - name: VestingManagerV2
+          file: ./abis/VestingManagerV2.json
+      eventHandlers:
+        - event: VestingScheduleCreated(indexed address,uint256,uint256,uint256,uint256)
+          handler: handleVestingScheduleCreated
+        - event: TokensClaimed(indexed address,uint256)
+          handler: handleTokensClaimed
+        - event: VestingRevoked(indexed address,uint256)
+          handler: handleVestingRevoked
+      file: ./src/mappings/vesting.ts

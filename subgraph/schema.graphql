@@ -1,0 +1,232 @@
+"""
+IDO Factory - represents the factory contract singleton
+"""
+type Factory @entity {
+  id: ID! # Factory contract address
+  saleCount: BigInt!
+  platformFeeBps: BigInt!
+  feeCollector: Bytes!
+  usdcToken: Bytes!
+  registry: Bytes!
+  createdAt: BigInt!
+  updatedAt: BigInt!
+
+  # Relations
+  sales: [Sale!]! @derivedFrom(field: "factory")
+}
+
+"""
+Sale - represents an individual IDO sale
+"""
+type Sale @entity {
+  id: ID! # Sale contract address
+  saleId: BigInt!
+  factory: Factory!
+  saleToken: Token!
+  creator: User!
+
+  # Contract addresses
+  idoSaleAddress: Bytes!
+  vestingManagerAddress: Bytes!
+  whitelistManagerAddress: Bytes!
+
+  # Sale configuration
+  startTime: BigInt
+  endTime: BigInt
+  tokenPrice: BigInt
+  hardCap: BigInt
+  softCap: BigInt
+  minContribution: BigInt
+  maxGasPrice: BigInt
+
+  # Vesting configuration
+  tgePercent: BigInt
+  cliffDuration: BigInt
+  vestingDuration: BigInt
+
+  # Sale state
+  totalRaised: BigInt!
+  totalSold: BigInt!
+  isFinalized: Boolean!
+  active: Boolean!
+
+  # Timestamps
+  createdAt: BigInt!
+  finalizedAt: BigInt
+  configuredAt: BigInt
+
+  # Relations
+  tiers: [Tier!]! @derivedFrom(field: "sale")
+  contributions: [Contribution!]! @derivedFrom(field: "sale")
+  claims: [Claim!]! @derivedFrom(field: "sale")
+  vestingSchedules: [VestingSchedule!]! @derivedFrom(field: "sale")
+}
+
+"""
+Token - ERC20 token information
+"""
+type Token @entity {
+  id: ID! # Token address
+  address: Bytes!
+  symbol: String
+  name: String
+  decimals: BigInt
+
+  # Relations
+  sales: [Sale!]! @derivedFrom(field: "saleToken")
+}
+
+"""
+User - participant in IDO sales
+"""
+type User @entity {
+  id: ID! # User address
+  address: Bytes!
+  totalContributionsETH: BigInt!
+  totalContributionsUSDC: BigInt!
+  totalTokensPurchased: BigInt!
+  totalTokensClaimed: BigInt!
+  salesParticipated: BigInt!
+
+  # Relations
+  contributions: [Contribution!]! @derivedFrom(field: "user")
+  claims: [Claim!]! @derivedFrom(field: "user")
+  vestingSchedules: [VestingSchedule!]! @derivedFrom(field: "beneficiary")
+  createdSales: [Sale!]! @derivedFrom(field: "creator")
+}
+
+"""
+Tier - individual tier configuration within a sale
+"""
+type Tier @entity {
+  id: ID! # {saleAddress}-{tierId}
+  sale: Sale!
+  tierId: BigInt!
+
+  startTime: BigInt!
+  endTime: BigInt!
+  tokenPrice: BigInt!
+  maxAllocation: BigInt!
+  totalAllocation: BigInt!
+
+  # Tier stats
+  totalContributed: BigInt!
+  totalSold: BigInt!
+  contributorCount: BigInt!
+
+  # Relations
+  contributions: [Contribution!]! @derivedFrom(field: "tier")
+}
+
+"""
+Contribution - individual user contribution to a tier
+"""
+type Contribution @entity {
+  id: ID! # {saleAddress}-{userAddress}-{tierId}-{txHash}
+  sale: Sale!
+  tier: Tier!
+  user: User!
+
+  # Contribution details
+  ethAmount: BigInt!
+  usdcAmount: BigInt!
+  tokensAllocated: BigInt!
+
+  # Transaction
+  txHash: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+}
+
+"""
+Claim - TGE or vested token claim
+"""
+type Claim @entity {
+  id: ID! # {saleAddress}-{userAddress}-{type}-{txHash}
+  sale: Sale!
+  user: User!
+
+  claimType: ClaimType!
+  amount: BigInt!
+
+  # Transaction
+  txHash: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+}
+
+enum ClaimType {
+  TGE
+  VESTED
+}
+
+"""
+VestingSchedule - vesting schedule for a user in a sale
+"""
+type VestingSchedule @entity {
+  id: ID! # {vestingManagerAddress}-{beneficiary}
+  sale: Sale!
+  beneficiary: User!
+
+  # Vesting details
+  totalAmount: BigInt!
+  claimedAmount: BigInt!
+  startTime: BigInt!
+  cliffEnd: BigInt!
+  endTime: BigInt!
+
+  # Status
+  isRevoked: Boolean!
+  revokedAt: BigInt
+
+  # Relations
+  claims: [VestingClaim!]! @derivedFrom(field: "schedule")
+
+  createdAt: BigInt!
+}
+
+"""
+VestingClaim - individual claim from a vesting schedule
+"""
+type VestingClaim @entity {
+  id: ID! # {vestingManagerAddress}-{beneficiary}-{txHash}
+  schedule: VestingSchedule!
+  amount: BigInt!
+
+  # Transaction
+  txHash: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+}
+
+"""
+DailySaleStats - daily aggregated statistics for a sale
+"""
+type DailySaleStats @entity {
+  id: ID! # {saleAddress}-{day}
+  sale: Sale!
+  day: BigInt!
+
+  contributionsCount: BigInt!
+  totalETH: BigInt!
+  totalUSDC: BigInt!
+  totalTokensSold: BigInt!
+  uniqueContributors: BigInt!
+}
+
+"""
+GlobalStats - global platform statistics
+"""
+type GlobalStats @entity {
+  id: ID! # "global"
+
+  totalSales: BigInt!
+  activeSales: BigInt!
+  totalRaisedETH: BigInt!
+  totalRaisedUSDC: BigInt!
+  totalTokensSold: BigInt!
+  totalUsers: BigInt!
+  totalContributions: BigInt!
+
+  updatedAt: BigInt!
+}
