@@ -1,0 +1,17 @@
+{
+  "name": "basepulse-ido-subgraph",
+  "version": "1.0.0",
+  "description": "The Graph subgraph for BasePulse IDO Factory",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ basepulse-ido",
+    "create-local": "graph create --node http://localhost:8020/ basepulse-ido",
+    "remove-local": "graph remove --node http://localhost:8020/ basepulse-ido",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 basepulse-ido"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.56.0",
+    "@graphprotocol/graph-ts": "^0.31.0"
+  }
+}
