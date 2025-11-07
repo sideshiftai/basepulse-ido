@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class OwnershipTransferred extends ethereum.Event {
@@ -300,7 +300,7 @@ export class IDOSaleV2__contributionsResult {
     value3: BigInt,
     value4: BigInt,
     value5: Address,
-    value6: i32
+    value6: i32,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -321,7 +321,7 @@ export class IDOSaleV2__contributionsResult {
     map.set("value5", ethereum.Value.fromAddress(this.value5));
     map.set(
       "value6",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value6))
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value6)),
     );
     return map;
   }
@@ -431,7 +431,7 @@ export class IDOSaleV2__saleConfigResult {
     value3: BigInt,
     value4: BigInt,
     value5: BigInt,
-    value6: BigInt
+    value6: BigInt,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -499,7 +499,7 @@ export class IDOSaleV2__tiersResult {
     value3: BigInt,
     value4: BigInt,
     value5: BigInt,
-    value6: BigInt
+    value6: BigInt,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -514,7 +514,7 @@ export class IDOSaleV2__tiersResult {
     let map = new TypedMap<string, ethereum.Value>();
     map.set(
       "value0",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value0))
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value0)),
     );
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
@@ -563,7 +563,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "contributions",
       "contributions(address):(uint256,uint256,uint256,uint256,uint256,address,uint8)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return new IDOSaleV2__contributionsResult(
@@ -573,17 +573,17 @@ export class IDOSaleV2 extends ethereum.SmartContract {
       result[3].toBigInt(),
       result[4].toBigInt(),
       result[5].toAddress(),
-      result[6].toI32()
+      result[6].toI32(),
     );
   }
 
   try_contributions(
-    param0: Address
+    param0: Address,
   ): ethereum.CallResult<IDOSaleV2__contributionsResult> {
     let result = super.tryCall(
       "contributions",
       "contributions(address):(uint256,uint256,uint256,uint256,uint256,address,uint8)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -597,8 +597,8 @@ export class IDOSaleV2 extends ethereum.SmartContract {
         value[3].toBigInt(),
         value[4].toBigInt(),
         value[5].toAddress(),
-        value[6].toI32()
-      )
+        value[6].toI32(),
+      ),
     );
   }
 
@@ -621,28 +621,30 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "getTierConfig",
       "getTierConfig(uint8):((uint8,uint256,uint256,uint256,uint256,uint256,uint256))",
-      [ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_tierId))]
+      [ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_tierId))],
     );
 
     return changetype<IDOSaleV2__getTierConfigResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getTierConfig(
-    _tierId: i32
+    _tierId: i32,
   ): ethereum.CallResult<IDOSaleV2__getTierConfigResultValue0Struct> {
     let result = super.tryCall(
       "getTierConfig",
       "getTierConfig(uint8):((uint8,uint256,uint256,uint256,uint256,uint256,uint256))",
-      [ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_tierId))]
+      [ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_tierId))],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<IDOSaleV2__getTierConfigResultValue0Struct>(value[0].toTuple())
+      changetype<IDOSaleV2__getTierConfigResultValue0Struct>(
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -656,7 +658,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "getTotalRaised",
       "getTotalRaised():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -666,26 +668,26 @@ export class IDOSaleV2 extends ethereum.SmartContract {
   }
 
   getUserContribution(
-    _user: Address
+    _user: Address,
   ): IDOSaleV2__getUserContributionResultValue0Struct {
     let result = super.call(
       "getUserContribution",
       "getUserContribution(address):((uint256,uint256,uint256,uint256,uint256,address,uint8))",
-      [ethereum.Value.fromAddress(_user)]
+      [ethereum.Value.fromAddress(_user)],
     );
 
     return changetype<IDOSaleV2__getUserContributionResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getUserContribution(
-    _user: Address
+    _user: Address,
   ): ethereum.CallResult<IDOSaleV2__getUserContributionResultValue0Struct> {
     let result = super.tryCall(
       "getUserContribution",
       "getUserContribution(address):((uint256,uint256,uint256,uint256,uint256,address,uint8))",
-      [ethereum.Value.fromAddress(_user)]
+      [ethereum.Value.fromAddress(_user)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -693,8 +695,8 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<IDOSaleV2__getUserContributionResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -747,7 +749,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "referralBonusPercent",
       "referralBonusPercent():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -757,7 +759,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "referralBonusPercent",
       "referralBonusPercent():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -770,7 +772,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "referralCount",
       "referralCount(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -780,7 +782,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "referralCount",
       "referralCount(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -793,7 +795,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "referralEarnings",
       "referralEarnings(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -803,7 +805,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "referralEarnings",
       "referralEarnings(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -831,7 +833,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "saleConfig",
       "saleConfig():(uint256,uint256,uint256,uint256,uint256,uint256,uint256)",
-      []
+      [],
     );
 
     return new IDOSaleV2__saleConfigResult(
@@ -841,7 +843,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
       result[3].toBigInt(),
       result[4].toBigInt(),
       result[5].toBigInt(),
-      result[6].toBigInt()
+      result[6].toBigInt(),
     );
   }
 
@@ -849,7 +851,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "saleConfig",
       "saleConfig():(uint256,uint256,uint256,uint256,uint256,uint256,uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -863,8 +865,8 @@ export class IDOSaleV2 extends ethereum.SmartContract {
         value[3].toBigInt(),
         value[4].toBigInt(),
         value[5].toBigInt(),
-        value[6].toBigInt()
-      )
+        value[6].toBigInt(),
+      ),
     );
   }
 
@@ -917,7 +919,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "tgeUnlockPercent",
       "tgeUnlockPercent():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -927,7 +929,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "tgeUnlockPercent",
       "tgeUnlockPercent():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -940,7 +942,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "tiers",
       "tiers(uint8):(uint8,uint256,uint256,uint256,uint256,uint256,uint256)",
-      [ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(param0))]
+      [ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(param0))],
     );
 
     return new IDOSaleV2__tiersResult(
@@ -950,7 +952,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
       result[3].toBigInt(),
       result[4].toBigInt(),
       result[5].toBigInt(),
-      result[6].toBigInt()
+      result[6].toBigInt(),
     );
   }
 
@@ -958,7 +960,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "tiers",
       "tiers(uint8):(uint8,uint256,uint256,uint256,uint256,uint256,uint256)",
-      [ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(param0))]
+      [ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(param0))],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -972,8 +974,8 @@ export class IDOSaleV2 extends ethereum.SmartContract {
         value[3].toBigInt(),
         value[4].toBigInt(),
         value[5].toBigInt(),
-        value[6].toBigInt()
-      )
+        value[6].toBigInt(),
+      ),
     );
   }
 
@@ -981,7 +983,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "totalParticipants",
       "totalParticipants():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -991,7 +993,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "totalParticipants",
       "totalParticipants():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1010,7 +1012,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "totalRaisedETH",
       "totalRaisedETH():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1023,7 +1025,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "totalRaisedUSDC",
       "totalRaisedUSDC():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1033,7 +1035,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "totalRaisedUSDC",
       "totalRaisedUSDC():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1046,7 +1048,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "totalTokensSold",
       "totalTokensSold():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1056,7 +1058,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "totalTokensSold",
       "totalTokensSold():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1099,7 +1101,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "vestingContract",
       "vestingContract():(address)",
-      []
+      [],
     );
 
     return result[0].toAddress();
@@ -1109,7 +1111,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "vestingContract",
       "vestingContract():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1122,7 +1124,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "vestingDuration",
       "vestingDuration():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1132,7 +1134,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "vestingDuration",
       "vestingDuration():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1145,7 +1147,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.call(
       "whitelistMerkleRoot",
       "whitelistMerkleRoot():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -1155,7 +1157,7 @@ export class IDOSaleV2 extends ethereum.SmartContract {
     let result = super.tryCall(
       "whitelistMerkleRoot",
       "whitelistMerkleRoot():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();

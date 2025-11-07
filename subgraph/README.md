@@ -76,12 +76,12 @@ npm run build
 
 2. **Authenticate**
    ```bash
-   graph auth --studio <DEPLOY_KEY>
+   graph auth <DEPLOY_KEY>
    ```
 
 3. **Deploy**
    ```bash
-   graph deploy --studio basepulse-ido
+   graph deploy bpulseido
    ```
 
 ### Hosted Service (Legacy)

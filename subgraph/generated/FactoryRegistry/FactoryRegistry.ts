@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class FactoryUpdated extends ethereum.Event {
@@ -164,7 +164,7 @@ export class FactoryRegistry__salesResult {
     value2: Address,
     value3: Address,
     value4: BigInt,
-    value5: boolean
+    value5: boolean,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -219,7 +219,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.call(
       "activeSaleIds",
       "activeSaleIds(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
 
     return result[0].toBigInt();
@@ -229,7 +229,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.tryCall(
       "activeSaleIds",
       "activeSaleIds(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -244,8 +244,8 @@ export class FactoryRegistry extends ethereum.SmartContract {
       "creatorToSales(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return result[0].toBigInt();
@@ -253,15 +253,15 @@ export class FactoryRegistry extends ethereum.SmartContract {
 
   try_creatorToSales(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "creatorToSales",
       "creatorToSales(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -289,7 +289,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.call(
       "getActiveSales",
       "getActiveSales():(uint256[])",
-      []
+      [],
     );
 
     return result[0].toBigIntArray();
@@ -299,7 +299,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.tryCall(
       "getActiveSales",
       "getActiveSales():(uint256[])",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -310,25 +310,23 @@ export class FactoryRegistry extends ethereum.SmartContract {
 
   getAllSales(
     _offset: BigInt,
-    _limit: BigInt
+    _limit: BigInt,
   ): Array<FactoryRegistry__getAllSalesResultSalesPageStruct> {
     let result = super.call(
       "getAllSales",
       "getAllSales(uint256,uint256):((uint256,address,address,address,uint256,bool)[])",
       [
         ethereum.Value.fromUnsignedBigInt(_offset),
-        ethereum.Value.fromUnsignedBigInt(_limit)
-      ]
+        ethereum.Value.fromUnsignedBigInt(_limit),
+      ],
     );
 
-    return result[0].toTupleArray<
-      FactoryRegistry__getAllSalesResultSalesPageStruct
-    >();
+    return result[0].toTupleArray<FactoryRegistry__getAllSalesResultSalesPageStruct>();
   }
 
   try_getAllSales(
     _offset: BigInt,
-    _limit: BigInt
+    _limit: BigInt,
   ): ethereum.CallResult<
     Array<FactoryRegistry__getAllSalesResultSalesPageStruct>
   > {
@@ -337,15 +335,15 @@ export class FactoryRegistry extends ethereum.SmartContract {
       "getAllSales(uint256,uint256):((uint256,address,address,address,uint256,bool)[])",
       [
         ethereum.Value.fromUnsignedBigInt(_offset),
-        ethereum.Value.fromUnsignedBigInt(_limit)
-      ]
+        ethereum.Value.fromUnsignedBigInt(_limit),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      value[0].toTupleArray<FactoryRegistry__getAllSalesResultSalesPageStruct>()
+      value[0].toTupleArray<FactoryRegistry__getAllSalesResultSalesPageStruct>(),
     );
   }
 
@@ -353,28 +351,30 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.call(
       "getSale",
       "getSale(uint256):((uint256,address,address,address,uint256,bool))",
-      [ethereum.Value.fromUnsignedBigInt(_saleId)]
+      [ethereum.Value.fromUnsignedBigInt(_saleId)],
     );
 
     return changetype<FactoryRegistry__getSaleResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getSale(
-    _saleId: BigInt
+    _saleId: BigInt,
   ): ethereum.CallResult<FactoryRegistry__getSaleResultValue0Struct> {
     let result = super.tryCall(
       "getSale",
       "getSale(uint256):((uint256,address,address,address,uint256,bool))",
-      [ethereum.Value.fromUnsignedBigInt(_saleId)]
+      [ethereum.Value.fromUnsignedBigInt(_saleId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<FactoryRegistry__getSaleResultValue0Struct>(value[0].toTuple())
+      changetype<FactoryRegistry__getSaleResultValue0Struct>(
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -382,7 +382,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.call(
       "getSalesByCreator",
       "getSalesByCreator(address):(uint256[])",
-      [ethereum.Value.fromAddress(_creator)]
+      [ethereum.Value.fromAddress(_creator)],
     );
 
     return result[0].toBigIntArray();
@@ -392,7 +392,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.tryCall(
       "getSalesByCreator",
       "getSalesByCreator(address):(uint256[])",
-      [ethereum.Value.fromAddress(_creator)]
+      [ethereum.Value.fromAddress(_creator)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -405,7 +405,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.call(
       "getSalesByToken",
       "getSalesByToken(address):(uint256[])",
-      [ethereum.Value.fromAddress(_token)]
+      [ethereum.Value.fromAddress(_token)],
     );
 
     return result[0].toBigIntArray();
@@ -415,7 +415,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.tryCall(
       "getSalesByToken",
       "getSalesByToken(address):(uint256[])",
-      [ethereum.Value.fromAddress(_token)]
+      [ethereum.Value.fromAddress(_token)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -426,7 +426,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
 
   isSaleActive(_saleId: BigInt): boolean {
     let result = super.call("isSaleActive", "isSaleActive(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(_saleId)
+      ethereum.Value.fromUnsignedBigInt(_saleId),
     ]);
 
     return result[0].toBoolean();
@@ -434,7 +434,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
 
   try_isSaleActive(_saleId: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("isSaleActive", "isSaleActive(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(_saleId)
+      ethereum.Value.fromUnsignedBigInt(_saleId),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -477,7 +477,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.call(
       "sales",
       "sales(uint256):(uint256,address,address,address,uint256,bool)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
 
     return new FactoryRegistry__salesResult(
@@ -486,7 +486,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
       result[2].toAddress(),
       result[3].toAddress(),
       result[4].toBigInt(),
-      result[5].toBoolean()
+      result[5].toBoolean(),
     );
   }
 
@@ -494,7 +494,7 @@ export class FactoryRegistry extends ethereum.SmartContract {
     let result = super.tryCall(
       "sales",
       "sales(uint256):(uint256,address,address,address,uint256,bool)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -507,8 +507,8 @@ export class FactoryRegistry extends ethereum.SmartContract {
         value[2].toAddress(),
         value[3].toAddress(),
         value[4].toBigInt(),
-        value[5].toBoolean()
-      )
+        value[5].toBoolean(),
+      ),
     );
   }
 
@@ -518,8 +518,8 @@ export class FactoryRegistry extends ethereum.SmartContract {
       "tokenToSales(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return result[0].toBigInt();
@@ -527,15 +527,15 @@ export class FactoryRegistry extends ethereum.SmartContract {
 
   try_tokenToSales(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "tokenToSales",
       "tokenToSales(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();

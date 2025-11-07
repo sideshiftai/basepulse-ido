@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { Rocket, Menu, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useAccount } from 'wagmi';
+import { DataSourceToggle } from '@/components/ui/data-source-toggle';
 
 export function Navigation() {
   const pathname = usePathname();
@@ -53,7 +54,9 @@ export function Navigation() {
           </nav>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          <DataSourceToggle />
+
           <Button
             variant="ghost"
             size="icon"

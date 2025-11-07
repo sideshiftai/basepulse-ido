@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class FeeCollectorUpdated extends ethereum.Event {
@@ -151,15 +151,15 @@ export class IDOFactory extends ethereum.SmartContract {
 
   createSale(
     _saleToken: Address,
-    _metadata: IDOFactory__createSaleInput_metadataStruct
+    _metadata: IDOFactory__createSaleInput_metadataStruct,
   ): BigInt {
     let result = super.call(
       "createSale",
       "createSale(address,(string,string,string,string,string,string,string)):(uint256)",
       [
         ethereum.Value.fromAddress(_saleToken),
-        ethereum.Value.fromTuple(_metadata)
-      ]
+        ethereum.Value.fromTuple(_metadata),
+      ],
     );
 
     return result[0].toBigInt();
@@ -167,15 +167,15 @@ export class IDOFactory extends ethereum.SmartContract {
 
   try_createSale(
     _saleToken: Address,
-    _metadata: IDOFactory__createSaleInput_metadataStruct
+    _metadata: IDOFactory__createSaleInput_metadataStruct,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "createSale",
       "createSale(address,(string,string,string,string,string,string,string)):(uint256)",
       [
         ethereum.Value.fromAddress(_saleToken),
-        ethereum.Value.fromTuple(_metadata)
-      ]
+        ethereum.Value.fromTuple(_metadata),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -224,7 +224,7 @@ export class IDOFactory extends ethereum.SmartContract {
     let result = super.tryCall(
       "platformFeeBps",
       "platformFeeBps():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -336,7 +336,7 @@ export class CreateSaleCall__Inputs {
 
   get _metadata(): CreateSaleCall_metadataStruct {
     return changetype<CreateSaleCall_metadataStruct>(
-      this._call.inputValues[1].value.toTuple()
+      this._call.inputValues[1].value.toTuple(),
     );
   }
 }

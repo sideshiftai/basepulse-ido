@@ -3,7 +3,7 @@
 import {
   Address,
   DataSourceTemplate,
-  DataSourceContext
+  DataSourceContext,
 } from "@graphprotocol/graph-ts";
 
 export class IDOSaleV2 extends DataSourceTemplate {
@@ -15,7 +15,7 @@ export class IDOSaleV2 extends DataSourceTemplate {
     DataSourceTemplate.createWithContext(
       "IDOSaleV2",
       [address.toHex()],
-      context
+      context,
     );
   }
 }
@@ -29,7 +29,7 @@ export class VestingManagerV2 extends DataSourceTemplate {
     DataSourceTemplate.createWithContext(
       "VestingManagerV2",
       [address.toHex()],
-      context
+      context,
     );
   }
 }
