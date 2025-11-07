@@ -1,6 +1,6 @@
 'use client';
 
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 import { ThemeProvider } from './theme-provider';
 import { Web3Provider } from './web3-provider';
 import { DataSourceProvider } from '@/lib/contexts/data-source-context';
