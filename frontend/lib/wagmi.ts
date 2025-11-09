@@ -34,7 +34,7 @@ export const modal = createAppKit({
     name: 'BasePulse IDO',
     description: 'Token sale platform on Base',
     url: 'https://baseido.vercel.app', // Update with your domain
-    icons: ['https://basepulse.io/icon.png'], // Update with your icon
+    icons: ['https://sideshiftai.github.io/website/ido_logo_dark.png'], // Update with your icon
   },
   features: {
     analytics: true,
