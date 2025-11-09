@@ -51,7 +51,7 @@ export default function IdoDetailsPage() {
     return (
       <div className="min-h-screen bg-background">
         <Navigation />
-        <div className="container py-12 flex items-center justify-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 flex items-center justify-center">
           <Loader2 className="h-8 w-8 animate-spin" />
         </div>
       </div>
@@ -71,7 +71,7 @@ export default function IdoDetailsPage() {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <div className="container py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-5xl mx-auto space-y-8">
           {/* Header */}
           <div>

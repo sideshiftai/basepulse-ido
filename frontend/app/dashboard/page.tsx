@@ -28,7 +28,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen bg-background">
         <Navigation />
-        <div className="container py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-12">
               <Wallet className="h-12 w-12 text-muted-foreground mb-4" />
@@ -69,7 +69,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <div className="container py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Header */}
           <div>

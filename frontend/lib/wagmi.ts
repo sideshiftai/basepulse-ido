@@ -33,7 +33,7 @@ export const modal = createAppKit({
   metadata: {
     name: 'BasePulse IDO',
     description: 'Token sale platform on Base',
-    url: 'https://basepulse.io', // Update with your domain
+    url: 'https://baseido.vercel.app', // Update with your domain
     icons: ['https://basepulse.io/icon.png'], // Update with your icon
   },
   features: {

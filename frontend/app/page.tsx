@@ -21,7 +21,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 gradient-bg opacity-50" />
-        <div className="container relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-5xl font-bold tracking-tight sm:text-6xl animate-fadeInUp">
               Welcome to BasePulse IDO
@@ -39,7 +39,7 @@ export default function HomePage() {
 
       {/* Features */}
       <section className="py-16 border-t">
-        <div className="container">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="p-6 rounded-lg border bg-card text-center space-y-2">
               <Shield className="h-10 w-10 mx-auto text-primary" />
@@ -75,7 +75,7 @@ export default function HomePage() {
 
       {/* IDO Tiers */}
       <section className="py-16 border-t">
-        <div className="container">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Active Token Sales</h2>
             <p className="text-muted-foreground">
@@ -128,7 +128,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="border-t py-8">
-        <div className="container">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <Rocket className="h-5 w-5" />

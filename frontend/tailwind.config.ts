@@ -9,13 +9,7 @@ const config: Config = {
     "./src/**/*.{ts,tsx}",
   ],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
+    // Container configuration moved to globals.css for Tailwind v4
     extend: {
       colors: {
         border: "hsl(var(--border))",
