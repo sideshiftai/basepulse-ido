@@ -36,7 +36,7 @@ export function Navigation() {
             <span className="font-bold text-xl">BasePulse</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-6" suppressHydrationWarning>
             {routes.map((route) => (
               <Link
                 key={route.href}

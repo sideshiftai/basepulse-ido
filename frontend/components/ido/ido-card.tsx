@@ -29,9 +29,9 @@ export function IdoCard({ id, name, description, tierInfo, tierType, isActive }:
   const now = Date.now() / 1000;
   const isUpcoming = now < tierInfo.startTime;
   const isEnded = now > tierInfo.endTime;
-  const progressPercent = Number(
-    (tierInfo.totalContributed * 100n) / tierInfo.allocation
-  );
+  const progressPercent = tierInfo.allocation > 0n
+    ? Number((tierInfo.totalContributed * 100n) / tierInfo.allocation)
+    : 0;
 
   const getStatus = () => {
     if (isEnded) return 'Ended';
