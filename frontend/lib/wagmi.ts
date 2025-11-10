@@ -31,7 +31,7 @@ export const modal = createAppKit({
   networks: supportedNetworks as any,
   projectId,
   metadata: {
-    name: 'BasePulse IDO',
+    name: 'Pulsar IDO',
     description: 'Token sale platform on Base',
     url: 'https://baseido.vercel.app', // Update with your domain
     icons: ['https://sideshiftai.github.io/website/ido_logo_dark.png'], // Update with your icon

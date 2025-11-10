@@ -13,7 +13,7 @@ interface DataSourceContextType {
 
 const DataSourceContext = createContext<DataSourceContextType | undefined>(undefined);
 
-const STORAGE_KEY = 'basepulse-data-source';
+const STORAGE_KEY = 'pulsar-data-source';
 
 export function DataSourceProvider({ children }: { children: React.ReactNode }) {
   const [dataSource, setDataSourceState] = useState<DataSource>('subgraph');

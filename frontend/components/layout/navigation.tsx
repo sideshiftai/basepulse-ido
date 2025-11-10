@@ -38,7 +38,7 @@ export function Navigation() {
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2">
             <Rocket className="h-6 w-6" />
-            <span className="font-bold text-xl">BasePulse</span>
+            <span className="font-bold text-xl">Pulsar</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6" suppressHydrationWarning>

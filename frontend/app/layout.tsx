@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BasePulse IDO - Token Sale Platform",
+  title: "Pulsar IDO - Token Sale Platform",
   description: "Participate in token sales on Base with transparent vesting and multi-tier allocations",
 };
 

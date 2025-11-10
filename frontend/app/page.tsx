@@ -25,7 +25,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-5xl font-bold tracking-tight sm:text-6xl animate-fadeInUp">
-              Welcome to BasePulse IDO
+              Welcome to Pulsar IDO
             </h1>
             <p className="text-xl text-muted-foreground animate-fadeInUp animate-delay-100">
               Participate in token sales with transparent vesting, multi-tier allocations,
@@ -80,7 +80,7 @@ export default function HomePage() {
           <div className="max-w-2xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Token Sales</h2>
             <p className="text-muted-foreground">
-              Explore and participate in active token sales on BasePulse
+              Explore and participate in active token sales on Pulsar
             </p>
           </div>
 
@@ -129,7 +129,7 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <Rocket className="h-5 w-5" />
-              <span className="font-semibold">BasePulse IDO</span>
+              <span className="font-semibold">Pulsar IDO</span>
             </div>
             <div className="text-sm text-muted-foreground">
               Built on Base Sepolia • Powered by Smart Contracts

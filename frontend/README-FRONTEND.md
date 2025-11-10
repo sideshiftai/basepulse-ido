@@ -1,6 +1,6 @@
-# BasePulse IDO Frontend
+# Pulsar IDO Frontend
 
-Modern, type-safe frontend for the BasePulse token sale platform built with Next.js 14, Wagmi, and Reown AppKit.
+Modern, type-safe frontend for the Pulsar token sale platform built with Next.js 14, Wagmi, and Reown AppKit.
 
 ## Features
 

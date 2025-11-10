@@ -9,7 +9,7 @@ if (!SUBGRAPH_URL) {
 }
 
 /**
- * Apollo Client for BasePulse IDO Subgraph
+ * Apollo Client for Pulsar IDO Subgraph
  *
  * This client connects to The Graph subgraph to query indexed blockchain data.
  * Benefits:
