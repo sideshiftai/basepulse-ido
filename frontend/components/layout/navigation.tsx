@@ -8,15 +8,20 @@ import { Rocket, Menu, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useAccount } from 'wagmi';
 import { DataSourceToggle } from '@/components/ui/data-source-toggle';
+import { isAdmin as checkIsAdmin } from '@/lib/utils/admin';
 
 export function Navigation() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const { address, isConnected } = useAccount();
 
+  // Check if user is admin/authorized creator
+  const isAdminUser = checkIsAdmin(address);
+
   const routes = [
     { href: '/', label: 'Home' },
     { href: '/dashboard', label: 'Dashboard' },
+    ...(isAdminUser ? [{ href: '/admin', label: 'Admin' }] : []),
   ];
 
   const handleConnect = () => {
