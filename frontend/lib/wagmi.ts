@@ -1,5 +1,5 @@
 import { cookieStorage, createStorage } from 'wagmi';
-import { baseSepolia } from 'wagmi/chains';
+import { baseSepolia, base } from 'wagmi/chains';
 import { createAppKit } from '@reown/appkit/react';
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi';
 
@@ -12,8 +12,9 @@ if (!projectId) {
   );
 }
 
-// Define supported networks
-const supportedNetworks = [baseSepolia];
+// Define supported networks based on mainnet flag
+const isMainnetEnabled = process.env.NEXT_PUBLIC_ENABLE_MAINNET === 'true';
+const supportedNetworks = isMainnetEnabled ? [base, baseSepolia] : [baseSepolia];
 
 // Create wagmi adapter
 export const wagmiAdapter = new WagmiAdapter({
