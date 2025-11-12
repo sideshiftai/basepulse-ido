@@ -19,7 +19,7 @@ export function useUserContribution(tierType: TierType) {
     functionName: 'getUserContribution',
     args: address ? [address, tierType] : undefined,
     query: {
-      enabled: !!address,
+      enabled: !!address && !!CONTRACTS.IDOSale,
     },
   });
 

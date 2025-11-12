@@ -20,6 +20,9 @@ export function useTierInfo(tierType: TierType) {
     abi: IDO_SALE_ABI,
     functionName: 'tiers',
     args: [tierType],
+    query: {
+      enabled: !!CONTRACTS.IDOSale,
+    },
   });
 
   if (!data) {

@@ -20,6 +20,9 @@ export function useCreateSale() {
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash });
 
   const createSale = async (saleToken: Address, metadata: SaleMetadata) => {
+    if (!CONTRACTS.IDOFactory) {
+      throw new Error('IDO Factory contract address not configured');
+    }
     return writeContract({
       address: CONTRACTS.IDOFactory,
       abi: IDO_FACTORY_ABI,
@@ -44,6 +47,9 @@ export function useAllSales() {
     address: CONTRACTS.FactoryRegistry,
     abi: FACTORY_REGISTRY_ABI,
     functionName: 'getAllSales',
+    query: {
+      enabled: !!CONTRACTS.FactoryRegistry,
+    },
   });
 
   return {
@@ -62,7 +68,7 @@ export function useSaleById(saleId: bigint | undefined) {
     functionName: 'getSale',
     args: saleId !== undefined ? [saleId] : undefined,
     query: {
-      enabled: saleId !== undefined,
+      enabled: saleId !== undefined && !!CONTRACTS.FactoryRegistry,
     },
   });
 

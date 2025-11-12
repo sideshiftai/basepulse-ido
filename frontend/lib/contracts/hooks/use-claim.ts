@@ -12,6 +12,10 @@ export function useClaimTGE() {
 
   const claim = async (tierType: TierType) => {
     try {
+      if (!CONTRACTS.IDOSale) {
+        toast.error('IDO Sale contract address not configured');
+        return;
+      }
       writeContract({
         address: CONTRACTS.IDOSale,
         abi: IDO_SALE_ABI,
@@ -42,6 +46,10 @@ export function useClaimVested() {
 
   const claim = async (scheduleId: bigint) => {
     try {
+      if (!CONTRACTS.VestingManager) {
+        toast.error('Vesting Manager contract address not configured');
+        return;
+      }
       writeContract({
         address: CONTRACTS.VestingManager,
         abi: VESTING_MANAGER_ABI,
@@ -70,6 +78,9 @@ export function useVestingSchedule(scheduleId: bigint) {
     abi: VESTING_MANAGER_ABI,
     functionName: 'getSchedule',
     args: [scheduleId],
+    query: {
+      enabled: !!CONTRACTS.VestingManager,
+    },
   });
 
   if (!data) {
@@ -115,6 +126,9 @@ export function useClaimableAmount(scheduleId: bigint) {
     abi: VESTING_MANAGER_ABI,
     functionName: 'claimableAmount',
     args: [scheduleId],
+    query: {
+      enabled: !!CONTRACTS.VestingManager,
+    },
   });
 
   return {

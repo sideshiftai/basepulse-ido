@@ -8,42 +8,63 @@ export function useIdoDetails() {
     address: CONTRACTS.IDOSale,
     abi: IDO_SALE_ABI,
     functionName: 'saleActive',
+    query: {
+      enabled: !!CONTRACTS.IDOSale,
+    },
   });
 
   const { data: paused } = useReadContract({
     address: CONTRACTS.IDOSale,
     abi: IDO_SALE_ABI,
     functionName: 'paused',
+    query: {
+      enabled: !!CONTRACTS.IDOSale,
+    },
   });
 
   const { data: totalRaised } = useReadContract({
     address: CONTRACTS.IDOSale,
     abi: IDO_SALE_ABI,
     functionName: 'totalRaised',
+    query: {
+      enabled: !!CONTRACTS.IDOSale,
+    },
   });
 
   const { data: owner } = useReadContract({
     address: CONTRACTS.IDOSale,
     abi: IDO_SALE_ABI,
     functionName: 'owner',
+    query: {
+      enabled: !!CONTRACTS.IDOSale,
+    },
   });
 
   const { data: pulseToken } = useReadContract({
     address: CONTRACTS.IDOSale,
     abi: IDO_SALE_ABI,
     functionName: 'pulseToken',
+    query: {
+      enabled: !!CONTRACTS.IDOSale,
+    },
   });
 
   const { data: tgeTime } = useReadContract({
     address: CONTRACTS.IDOSale,
     abi: IDO_SALE_ABI,
     functionName: 'tgeTime',
+    query: {
+      enabled: !!CONTRACTS.IDOSale,
+    },
   });
 
   const { data: saleEndTime } = useReadContract({
     address: CONTRACTS.IDOSale,
     abi: IDO_SALE_ABI,
     functionName: 'saleEndTime',
+    query: {
+      enabled: !!CONTRACTS.IDOSale,
+    },
   });
 
   return {

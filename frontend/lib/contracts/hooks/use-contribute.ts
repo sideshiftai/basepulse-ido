@@ -17,6 +17,10 @@ export function useContributeETH() {
     referrer?: `0x${string}`
   ) => {
     try {
+      if (!CONTRACTS.IDOSale) {
+        toast.error('IDO Sale contract address not configured');
+        return;
+      }
       const value = parseEther(amount);
 
       writeContract({
@@ -54,6 +58,10 @@ export function useContributeToken(tokenAddress: `0x${string}`) {
     referrer?: `0x${string}`
   ) => {
     try {
+      if (!CONTRACTS.IDOSale) {
+        toast.error('IDO Sale contract address not configured');
+        return;
+      }
       const value = parseEther(amount);
 
       writeContract({
@@ -91,6 +99,10 @@ export function useApproveToken(tokenAddress: `0x${string}`) {
 
   const approve = async (amount: string) => {
     try {
+      if (!CONTRACTS.IDOSale) {
+        toast.error('IDO Sale contract address not configured');
+        return;
+      }
       const value = parseEther(amount);
 
       writeContract({
